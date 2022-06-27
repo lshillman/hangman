@@ -8,7 +8,7 @@ startGameBtn.addEventListener("click", startGame);
 
     // add an eventlistener to the window to listen for keypresses
 document.addEventListener("keydown", keyPressed);
-
+var secondsRemaining = document.getElementById("timer");
 function keyPressed(k) {
     evaluateGuess(k.key);
 }
@@ -16,6 +16,7 @@ function keyPressed(k) {
 function evaluateGuess(key) {
     if (randomWord.includes(key)) {
         console.log("GOOD JOB!");
+
     } else {
         console.log("sad trombone");
     }
@@ -62,6 +63,16 @@ function displayBlanks() {
 
 // As a user, I want the game to be timed
     // setInterval thing
+
+    function startCountDown(){
+
+        setInterval(function(){
+
+        }, 1000);
+
+
+
+    }
 
 // As a user, I want to win the game when I have guessed all the letters in the word.
     // if all blanks have been replaced, AND there is time left, I win
