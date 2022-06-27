@@ -10,7 +10,15 @@ startGameBtn.addEventListener("click", startGame);
 document.addEventListener("keydown", keyPressed);
 
 function keyPressed(k) {
-    console.log(k.key);
+    evaluateGuess(k.key);
+}
+
+function evaluateGuess(key) {
+    if (randomWord.includes(key)) {
+        console.log("GOOD JOB!");
+    } else {
+        console.log("sad trombone");
+    }
 }
 
 var gameContainer = document.getElementById("game");
