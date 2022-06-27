@@ -1,3 +1,13 @@
 body {
    background-color: aqua; 
 }
+
+#game {
+   border: 1px solid blue;
+   height: 8rem;
+   display:none;
+}
+
+#guessContainer {
+   letter-spacing: 1rem;
+}

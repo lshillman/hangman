@@ -6,11 +6,24 @@ console.log("I'm a JavaScript file linked to this page!");
 var startGameBtn = document.getElementById("startGameBtn");
 startGameBtn.addEventListener("click", startGame);
 
+    // add an eventlistener to the window to listen for keypresses
+document.addEventListener("keydown", keyPressed);
+
+function keyPressed(k) {
+    console.log(k.key);
+}
+
+var gameContainer = document.getElementById("game");
+var guessContainer = document.getElementById("guessContainer");
+
 var randomWord;
 
 function startGame() {
     console.log("Start game was clicked!");
-    startGameBtn.setAttribute("style", "display:none;")
+    startGameBtn.setAttribute("style", "display: none;")
+    gameContainer.setAttribute("style", "display: block;")
+    chooseWord();
+    displayBlanks();
 }
 
     // have an array of some words.
@@ -23,11 +36,11 @@ function chooseWord() {
 
     // display blanks to the user for each letter of the selected word
 function displayBlanks() {
-    var blanks;
+    var blanks = "";
     for (i=0; i < randomWord.length; i++) {
-        blanks += "_ "
+        blanks += "_";
     }
-
+    guessContainer.innerHTML = blanks;
 }
 
 
