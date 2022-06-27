@@ -8,7 +8,8 @@ startGameBtn.addEventListener("click", startGame);
 
     // add an eventlistener to the window to listen for keypresses
 document.addEventListener("keydown", keyPressed);
-var secondsRemaining = document.getElementById("timer");
+var clock = document.getElementById("timer");
+var secondsRemaining = 6;
 function keyPressed(k) {
     evaluateGuess(k.key);
 }
@@ -33,6 +34,7 @@ function startGame() {
     gameContainer.setAttribute("style", "display: block;")
     chooseWord();
     displayBlanks();
+    startCountDown();
 }
 
     // have an array of some words.
@@ -67,7 +69,12 @@ function displayBlanks() {
     function startCountDown(){
 
         setInterval(function(){
-
+            if (secondsRemaining > -1){
+                clock.innerHTML = secondsRemaining;
+                secondsRemaining--;
+            }else{
+                clearInterval();
+            }
         }, 1000);
 
 
