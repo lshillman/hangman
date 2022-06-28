@@ -37,6 +37,9 @@ function renderStats() {
 
 ## Demo of gameplay
 
+https://user-images.githubusercontent.com/5232938/176073951-5483291c-e3a7-4ee6-a2a6-b7a57d9b8fdd.mov
+
+
 
 ## License
 
