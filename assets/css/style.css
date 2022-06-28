@@ -11,3 +11,7 @@ body {
 #guessContainer {
    letter-spacing: 1rem;
 }
+
+#timeRemaining {
+   display: none;
+}
