@@ -4,8 +4,10 @@ body {
 
 #game {
    border: 1px solid blue;
-   height: 8rem;
+   height: fit-content;
    display:none;
+   width: fit-content;
+   padding: 2rem;
 }
 
 #guessContainer {

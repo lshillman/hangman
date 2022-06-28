@@ -1,12 +1,12 @@
-# Project Title
+# Hangman game
 
-## Subtitle
+[Deployed Link](https://lshillman.github.io/hangman/)
 
-[Deployed Link](https://lshillman.github.io/REPOSITORY-NAME/)
+You've played it before. It's hangman. Click "new game" and press a key to make a guess!
 
-Description of project (also remember to add a blurb and the deployed link to the repo's "about" section)
+This game will store your wins and losses to localstorage, so you can come back again and again to relive your glory (or shame).
 
-What I did
+Made for you with love by me and @OnlyMeHere.
 
 ## Technologies used:
 
@@ -14,31 +14,30 @@ What I did
 * CSS
 * JS
 
-
 ## Code snippet
 
-The following is _ and it's interesting/significant because _
+Turns out you can't do math with stuff in localStorage. So many hours wasted debugging. Here's how we're keeping track of the score:
 
 ````javascript
-// code goes here
+function renderStats() {
+    if (localStorage.getItem("wins") != null) {
+        wins = localStorage.getItem("wins");
+    } else {
+        wins = 0;
+    }
+    if (localStorage.getItem("losses") != null) {
+        losses = localStorage.getItem("losses");
+    } else {
+        losses = 0;
+    }
+    winEl.innerHTML = wins;
+    lossEl.innerHTML = losses;
+}
 ````
 
-## UX wires/prototype
-
-Here are the layouts/functionality I was going for...
-![a screenshot of the live site](./assets/images/readme/design.jpg)
-
-## Screenshot of the live page and/or demo gif
-
-![a screenshot of the live site](./assets/images/readme/is-this-empathy.jpg)
-
-
-## Credits
-
-List collaborators and roles, and resources consulted:
-https://www.w3.org/WAI/
+## Demo of gameplay
 
 
 ## License
 
-Talk to me if you want to use this.
+No license is granted to you, express or implied. But if you want to use it, talk to us.

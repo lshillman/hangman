@@ -1,5 +1,18 @@
 console.log("I'm a JavaScript file linked to this page!");
 
+var gameContainer = document.getElementById("game");
+var guessContainer = document.getElementById("guessContainer");
+var winEl = document.getElementById("wins");
+var lossEl = document.getElementById("losses");
+var timerHeader = document.getElementById("timeRemaining");
+
+var randomWord;
+var randomWordArray;
+var blanks = [];
+var wins;
+var losses;
+var secondsRemaining = 40;
+
 
 // As a user, I want to start the game by clicking on a button. 
     // get the id of the button and add an eventlistener
@@ -9,7 +22,7 @@ startGameBtn.addEventListener("click", startGame);
     // add an eventlistener to the window to listen for keypresses
 document.addEventListener("keydown", keyPressed);
 var clock = document.getElementById("timer");
-var secondsRemaining = 60;
+
 function keyPressed(k) {
     evaluateGuess(k.key);
 }
@@ -24,24 +37,14 @@ function evaluateGuess(key) {
         }
         guessContainer.innerHTML = blanks.join("");
         if (blanks.toString() == randomWord.toString() && secondsRemaining > -1) {
-            winGame()
+            finishGame("win");
         }
     } else {
         console.log("sad trombone");
     }
 }
 
-var gameContainer = document.getElementById("game");
-var guessContainer = document.getElementById("guessContainer");
-var winEl = document.getElementById("wins");
-var lossEl = document.getElementById("losses");
-var timerHeader = document.getElementById("timeRemaining");
 
-var randomWord;
-var randomWordArray;
-var blanks = [];
-var wins = 0;
-var losses = 0;
 
 function startGame() {
     console.log("Start game was clicked!");
@@ -90,40 +93,52 @@ function startCountDown(){
             secondsRemaining--;
         } else {
             clearInterval(interval);
+            finishGame("lose");
         }
     }, 1000);
 }
 
-function winGame() {
-    wins++;
-    winEl.innerHTML = wins;
+function finishGame(condition) {
+    if (condition == "win") {
+        console.log ("YOU WON");
+        wins++;
+        localStorage.setItem("wins", wins);
+    } else {
+        console.log ("YOU LOST");
+        losses++;
+        localStorage.setItem("losses", losses);
+    }
+    renderStats()
     clearInterval(interval);
-    secondsRemaining = 60;
+    secondsRemaining = 40;
     clock.innerHTML = secondsRemaining;
     startGameBtn.setAttribute("style", "display: block;");
     gameContainer.setAttribute("style", "display: none;");
-    timerHeader.setAttribute("style", "display: none;")
+    timerHeader.setAttribute("style", "display: none;");
 
 }
 
-function loseGame() {
-    losses++;
-    lossEl.innerHTML = losses;
-    clearInterval(interval);
-    secondsRemaining = 60;
-    clock.innerHTML = secondsRemaining;
-    startGameBtn.setAttribute("style", "display: block;");
-    gameContainer.setAttribute("style", "display: none;");
-    timerHeader.setAttribute("style", "display: none;")
-}
 
 function renderStats() {
-    
+    if (localStorage.getItem("wins") != null) {
+        wins = localStorage.getItem("wins");
+    } else {
+        wins = 0;
+    }
+    if (localStorage.getItem("losses") != null) {
+        losses = localStorage.getItem("losses");
+    } else {
+        losses = 0;
+    }
+    winEl.innerHTML = wins;
+    lossEl.innerHTML = losses;
 }
 
 function init() {
-    renderStats()
+    renderStats();
 }
+
+init();
 
 // As a user, I want to win the game when I have guessed all the letters in the word.
     // if all blanks have been replaced, AND there is time left, I win
